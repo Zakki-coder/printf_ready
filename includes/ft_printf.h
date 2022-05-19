@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:15:00 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 16:11:15 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:37:47 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_format_string
 	int					percent_flag;
 }				t_fs;
 
+int					is_correct_format(char c, int flag);
+char				*s_itoa(char *out, unsigned long long nb, int len, int pre);
 int					no_conversion(t_fs *f_str, char **percent);
 void				get_format(t_fs *f_str, char *conversion, char *percent);
 void				format_fs(t_fs *f_str);

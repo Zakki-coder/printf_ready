@@ -6,56 +6,13 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:55:59 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 15:57:29 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:41:17 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*search_conversion(char *fs)
-{
-	char	*conversions;
-	int		i;
-	int		k;
-
-	conversions = "diouUxXfcsp%";
-	i = 0;
-	k = 0;
-	if (!fs)
-		return (NULL);
-	while (fs[i] != '\0')
-	{
-		while (conversions[k] != '\0')
-		{
-			if (conversions[k] == fs[i])
-				return (&fs[i]);
-			++k;
-		}
-		k = 0;
-		++i;
-	}
-	return (NULL);
-}
-
-int	is_correct_format(char c, int flag)
-{
-	if (flag == 1)
-	{
-		return (c == '#' || c == '-' || c == '0' || c == '+'
-		|| c == ' ' || c == 'U' || c == 'L' || c == 'l' || c == 'h'
-		|| ft_isdigit(c) || c == '%' || c == '.'
-		|| c == 'f' || c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
-		|| c == 'o' || c == 'u' || c == 'x' || c == 'X');
-	}
-	else
-	{
-		return (c == '#' || c == '-' || c == '0' || c == '+'
-		|| c == ' ' || c == 'U' || c == 'L' || c == 'l' || c == 'h'
-		|| ft_isdigit(c) || c == '.');
-	}
-}
-
-static int check_dbl_prcnt_split(t_fs *f_str, char *percent, char **l_fs)
+static int	check_dbl_prcnt_split(t_fs *f_str, char *percent, char **l_fs)
 {
 	while (percent && *l_fs < percent)
 	{
@@ -73,10 +30,10 @@ static char	*check_for_double_percent(t_fs *f_str, char *fs)
 {
 	char		*percent;
 	const char	*conversion;
-	char	*l_fs;
+	char		*l_fs;
 
 	l_fs = fs + 1;
-	while(is_correct_format(*l_fs, 2))
+	while (is_correct_format(*l_fs, 2))
 		++l_fs;
 	percent = ft_strchr(l_fs, '%');
 	if (percent)
@@ -90,18 +47,26 @@ static char	*check_for_double_percent(t_fs *f_str, char *fs)
 		f_str->ret += write(1, l_fs, percent - l_fs);
 		fs = percent;
 		f_str->str = fs;
-		return(fs);
+		return (fs);
 	}
 	if (check_dbl_prcnt_split(f_str, percent, &l_fs))
-		return(percent);
+		return (percent);
 	return (fs);
 }
 
-void	parser_has_percent(t_fs *f_str, char **percent, char **conversion)
+static void	parser_has_percent(t_fs *f_str, char **percent, char **conversion)
 {
 	*percent = check_for_double_percent(f_str, *percent);
 	if (*percent)
 		*conversion = search_conversion(*percent + 1);
+}
+
+static void	parser_no_conversion(t_fs *f_str, char *percent)
+{
+	while (is_correct_format(*percent, 1))
+		++percent;
+	f_str->ret += write(1, percent, ft_strlen(percent));
+	return ;
 }
 
 void	parser(t_fs *f_str)
@@ -124,9 +89,7 @@ void	parser(t_fs *f_str)
 		}
 		else if (!conversion && no_conversion(f_str, &percent))
 		{
-			while(is_correct_format(*percent, 1))
-				++percent;
-			f_str->ret += write(1, percent, ft_strlen(percent));
+			parser_no_conversion(f_str, percent);
 			return ;
 		}
 		else

@@ -6,13 +6,13 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:10:40 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 16:10:57 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:38:06 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*not_itoa(char *out, unsigned long long nb, int len, int prefix)
+char	*s_itoa(char *out, unsigned long long nb, int len, int pre)
 {
 	unsigned long long	ll;
 
@@ -21,7 +21,7 @@ char	*not_itoa(char *out, unsigned long long nb, int len, int prefix)
 	{
 		ll = nb - ((nb / 10) * 10);
 		nb /= 10;
-		*(out + prefix + --len) = ll + '0';
+		*(out + pre + --len) = ll + '0';
 	}	
 	return (out);
 }

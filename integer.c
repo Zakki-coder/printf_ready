@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 22:03:25 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 16:09:14 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:18:01 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ static int	nb_length(unsigned long long nb)
 		nb /= 10;
 	}
 	return (n);
-}
-
-char	*not_itoa(char *out, unsigned long long nb, int len, int prefix)
-{
-	unsigned long long	ll;
-
-	ll = 0;
-	while (len > 0)
-	{
-		ll = nb - ((nb / 10) * 10);
-		nb /= 10;
-		*(out + prefix + --len) = ll + '0';
-	}	
-	return (out);
 }
 
 static void	get_argument_wrap(t_fs *f_str, unsigned long long *ull)
@@ -120,7 +106,7 @@ void	integer(t_fs *f_str)
 		exit (-1);
 	ft_memset(out, ' ', f_str->width);
 	integer_split(f_str, &prefix, out, len);
-	out = not_itoa(out, ull, len, prefix);
+	out = s_itoa(out, ull, len, prefix);
 	set_prefix(f_str, out, len);
 	if ((prefix + len) > f_str->width)
 		f_str->width = prefix + len;

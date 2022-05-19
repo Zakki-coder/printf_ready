@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 11:53:10 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 15:40:42 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:39:39 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,47 @@ void	get_format(t_fs *f_str, char *conversion, char *percent)
 	f_str->str = conversion;
 	function_dispatcher(f_str, *conversion);
 	free (format);
+}
+
+int	is_correct_format(char c, int flag)
+{
+	if (flag == 1)
+	{
+		return (c == '#' || c == '-' || c == '0' || c == '+'
+			|| c == ' ' || c == 'U' || c == 'L' || c == 'l' || c == 'h'
+			|| ft_isdigit(c) || c == '%' || c == '.'
+			|| c == 'f' || c == 'c' || c == 's' || c == 'p' || c == 'd'
+			|| c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X');
+	}
+	else
+	{
+		return (c == '#' || c == '-' || c == '0' || c == '+'
+			|| c == ' ' || c == 'U' || c == 'L' || c == 'l' || c == 'h'
+			|| ft_isdigit(c) || c == '.');
+	}
+}
+
+char	*search_conversion(char *fs)
+{
+	char	*conversions;
+	int		i;
+	int		k;
+
+	conversions = "diouUxXfcsp%";
+	i = 0;
+	k = 0;
+	if (!fs)
+		return (NULL);
+	while (fs[i] != '\0')
+	{
+		while (conversions[k] != '\0')
+		{
+			if (conversions[k] == fs[i])
+				return (&fs[i]);
+			++k;
+		}
+		k = 0;
+		++i;
+	}
+	return (NULL);
 }
