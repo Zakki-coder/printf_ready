@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 18:30:23 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/18 14:50:40 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:44:11 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	create_output(t_fs *f_str, char *nb, unsigned int len)
 	else
 		set_prefix(f_str, out, f_str->width);
 	f_str->ret += write(1, out, f_str->width);
+	free (out);
+	free (nb);
 }
 
 void	print_float(t_fs *f_str, long double f)

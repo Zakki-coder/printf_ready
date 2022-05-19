@@ -73,8 +73,10 @@ all: ${NAME}
 
 clean:
 	rm -f ${OBJ} ${OBJ2} 
+	make clean -C ./libft/
 
 fclean: clean
 	rm -f ${NAME}
+	make fclean -C ./libft/
 
 re: fclean all

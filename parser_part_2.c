@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 11:53:10 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 16:39:39 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:48:52 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	no_conversion(t_fs *f_str, char **percent)
 {
+	f_str->ret += write(1, f_str->str, *percent - f_str->str);
 	if (f_str->width >= 1)
 		f_str->width -= 1;
 	if (f_str->flags & ZERO)

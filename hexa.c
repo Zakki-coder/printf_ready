@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 19:19:34 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/18 21:55:09 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:34:42 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	hexa(t_fs *f_str, long long nb)
 	}
 	if (zero_case(f_str, nb))
 		return ;
+	if (nb == 0 && f_str->flags & HASH)
+		f_str->flags ^= HASH;
 	width = f_str->width;
 	len = hexa_len(f_str, convert_from_negativity(f_str, nb));
 	if (!f_str->is_precision)
