@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 22:03:25 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/18 22:34:26 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:09:14 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ char	*not_itoa(char *out, unsigned long long nb, int len, int prefix)
 	return (out);
 }
 
+static void	get_argument_wrap(t_fs *f_str, unsigned long long *ull)
+{
+	if (*f_str->str == 'U')
+		f_str->modifier |= LONG;
+	*ull = get_argument_u(f_str);
+}
+
 unsigned long long	get_int_argument(t_fs *f_str)
 {
 	unsigned long long	ull;
@@ -50,8 +57,8 @@ unsigned long long	get_int_argument(t_fs *f_str)
 	ll = 0;
 	if (*f_str->str == 'u' || *f_str->str == 'U')
 	{
-		ull = get_argument_u(f_str);
-		if (*f_str->str == 'u')
+		get_argument_wrap(f_str, &ull);
+		if (*f_str->str == 'u' || *f_str->str == 'U')
 		{
 			if (f_str->flags & PLUS)
 				f_str->flags ^= PLUS;

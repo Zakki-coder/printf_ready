@@ -19,6 +19,7 @@ SRC =	./ft_printf.c				\
 		./octal.c					\
 		./octal_part_2.c			\
 		./integer.c					\
+		./integer_part_2.c			\
 		./percent.c					\
 		./get_argument_utilities.c	\
 		./shared_utilities.c 		\
@@ -48,6 +49,7 @@ OBJ =	./ft_printf.o				\
 		./octal.o					\
 		./octal_part_2.o			\
 		./integer.o					\
+		./integer_part_2.o			\
 		./percent.o					\
 		./get_argument_utilities.o	\
 		./shared_utilities.o 		\
