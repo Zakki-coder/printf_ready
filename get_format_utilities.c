@@ -23,6 +23,10 @@ void	get_modifiers(t_fs *f_str, const char *format)
 		if ((*format == 'l' && *(format - 1) != 'l'
 				&& *(format + 1) != 'l') || *format == 'U')
 			f_str->modifier |= LONG;
+		if (*format == 'j')
+			f_str->modifier |= LLONG;
+		if (*format == 'z')
+			f_str->modifier |= LLONG;
 		if (*format == 'h' && *(format + 1) == 'h'
 			&& *(format - 1) != 'h' && *(format + 2) != 'h' && (format)++)
 			f_str->modifier |= CHAR;

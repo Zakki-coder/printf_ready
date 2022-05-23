@@ -75,15 +75,15 @@ int	is_correct_format(char c, int flag)
 	{
 		return (c == '#' || c == '-' || c == '0' || c == '+'
 			|| c == ' ' || c == 'U' || c == 'L' || c == 'l' || c == 'h'
-			|| ft_isdigit(c) || c == '%' || c == '.'
+			|| ft_isdigit(c) || c == '%' || c == '.' || c == 'j' || c == 'z'
 			|| c == 'f' || c == 'c' || c == 's' || c == 'p' || c == 'd'
 			|| c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X');
 	}
 	else
 	{
-		return (c == '#' || c == '-' || c == '0' || c == '+'
+		return (c == '#' || c == '-' || c == '0' || c == '+' || c == 'j'
 			|| c == ' ' || c == 'U' || c == 'L' || c == 'l' || c == 'h'
-			|| ft_isdigit(c) || c == '.');
+			|| c == 'z' || ft_isdigit(c) || c == '.');
 	}
 }
 

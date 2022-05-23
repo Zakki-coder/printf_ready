@@ -53,6 +53,8 @@ long long	cast_to_modifier(t_fs *f_str, long long ll)
 		return ((long long)ll);
 	else if (m & LONG)
 		return ((long)ll);
+	else if(m & SIZET)
+		return ((size_t)ll);
 	else if (m & SHORT)
 		return ((short)ll);
 	else if (m & CHAR)
@@ -69,6 +71,8 @@ unsigned long long	cast_to_modifier_u(t_fs *f_str, unsigned long long ll)
 		return ((unsigned long long)ll);
 	else if (m & LONG)
 		return ((unsigned long)ll);
+	else if(m & SIZET)
+		return ((size_t)ll);
 	else if (m & SHORT)
 		return ((unsigned short)ll);
 	else if (m & CHAR)

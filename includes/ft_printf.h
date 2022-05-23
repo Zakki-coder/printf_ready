@@ -18,17 +18,34 @@
 # include "unistd.h"
 # include <stdlib.h>
 
-# define HASH	256
-# define MINUS	64
-# define ZERO	16
-# define PLUS	4	
-# define SPACE	1
+# define HASH	16384	
+# define MINUS	8192	
+# define ZERO	4096	
+# define PLUS	2048	
+# define SPACE	1024
 # define LDBL	512
 # define LLONG 	128
 # define LONG	32
+# define SIZET	16
 # define SHORT	8
 # define CHAR	2	
 # define MAX_INT 2147483647
+# define BLACK		30
+# define RED		31
+# define GREEN		32
+# define BROWN		33
+# define BLUE		34
+# define PURPLE		35
+# define CYAN		36
+# define LGRAY		37
+# define BLACK_B	40
+# define RED_B		41
+# define GREEN_B	42
+# define BROWN_B	43
+# define BLUE_B		44
+# define PURPLE_B	45
+# define CYAN_B		46
+# define LGRAY_B	47
 
 typedef struct s_format_string
 {

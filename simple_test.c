@@ -807,6 +807,20 @@ void where_is_leak()
 	res2 = ft_printf("|%*d|\n", UINT_MAX, 4);
 	printf("res1: %d res2: %d\n", res1, res2);
 }
+
+void test_j()
+{
+	printf("%jx\n", 4294967296);
+	ft_printf("%jx\n", 4294967296);
+	printf("%jd\n", 9223372036854775807);
+	ft_printf("%jd\n", 9223372036854775807);
+	printf("%zd\n", 4294967295);
+	ft_printf("%zd\n", 4294967295);
+	printf("%zd\n", 4294967296);
+	ft_printf("%zd\n", 4294967296);
+	printf("%zd\n", LONG_MAX + 1);
+	ft_printf("%zd\n", LONG_MAX + 1);
+}
 /* Anything excpet float with value 0 and precisionn zero prints no digits */
 int main(void)
 {
@@ -827,12 +841,13 @@ int main(void)
 //	test_rounder();
 //	single_float();
 //	test_long_double();
-	test_str();
+//	test_str();
 //	float_play();
 //	test_char();
 //	test_ptr();
 //	test_minus();
 //	test_unsigned();
 //	where_is_leak();
+	test_j();
 	return (0);
 }
