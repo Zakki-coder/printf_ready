@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:15:00 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/19 18:57:09 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:43:31 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,23 @@
 # define SHORT	8
 # define CHAR	2	
 # define MAX_INT 2147483647
-# define BLACK		30
-# define RED		31
-# define GREEN		32
-# define BROWN		33
-# define BLUE		34
-# define PURPLE		35
-# define CYAN		36
-# define LGRAY		37
-# define BLACK_B	40
-# define RED_B		41
-# define GREEN_B	42
-# define BROWN_B	43
-# define BLUE_B		44
-# define PURPLE_B	45
-# define CYAN_B		46
-# define LGRAY_B	47
+# define BLACK		"\e[30m"
+# define RED		"\e[31m"
+# define GREEN		"\e[32m"
+# define BROWN		"\e[33m"
+# define BLUE		"\e[34m"
+# define PURPLE		"\e[35m"
+# define CYAN		"\e[36m"
+# define LGRAY		"\e[37m"
+# define BLACK_B	"\e[40m"
+# define RED_B		"\e[41m"
+# define GREEN_B	"\e[42m"
+# define BROWN_B	"\e[43m"
+# define BLUE_B		"\e[44m"
+# define PURPLE_B	"\e[45m"
+# define CYAN_B		"\e[46m"
+# define LGRAY_B	"\e[47m"
+# define END_COLOR	"\e[0m"
 
 typedef struct s_format_string
 {
@@ -63,6 +64,12 @@ typedef struct s_format_string
 	int					percent_flag;
 }				t_fs;
 
+union u_data {
+	double					f;
+	unsigned long long int	d;
+}	u_data;
+
+long double			divide_one_with_ten_n(int precision);
 int					is_correct_format(char c, int flag);
 char				*s_itoa(char *out, unsigned long long nb, int len, int pre);
 int					no_conversion(t_fs *f_str, char **percent);

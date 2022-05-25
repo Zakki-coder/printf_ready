@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 11:42:36 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/18 22:36:30 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:25:45 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long long	cast_to_modifier(t_fs *f_str, long long ll)
 		return ((long long)ll);
 	else if (m & LONG)
 		return ((long)ll);
-	else if(m & SIZET)
+	else if (m & SIZET)
 		return ((size_t)ll);
 	else if (m & SHORT)
 		return ((short)ll);
@@ -71,7 +71,7 @@ unsigned long long	cast_to_modifier_u(t_fs *f_str, unsigned long long ll)
 		return ((unsigned long long)ll);
 	else if (m & LONG)
 		return ((unsigned long)ll);
-	else if(m & SIZET)
+	else if (m & SIZET)
 		return ((size_t)ll);
 	else if (m & SHORT)
 		return ((unsigned short)ll);

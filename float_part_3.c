@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 18:48:38 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/13 18:48:40 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:39:34 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,17 @@ int	get_digit_before_decimal(long double f)
 		return ((int)nb);
 	}
 	return ((int)f);
+}
+
+long double	divide_one_with_ten_n(int precision)
+{
+	long double	ret;
+
+	ret = 1;
+	while (precision)
+	{
+		ret /= 10;
+		--precision;
+	}
+	return (ret);
 }

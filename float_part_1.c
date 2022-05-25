@@ -6,7 +6,7 @@
 /*   By: jniemine <jniemine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 18:28:41 by jniemine          #+#    #+#             */
-/*   Updated: 2022/05/18 14:44:48 by jniemine         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:44:48 by jniemine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ void	set_precision_for_rounding_dir(t_fs *f_str, int *precision)
 		f_str->precision = 6;
 		*precision += f_str->precision;
 	}
-}
-
-long double	divide_one_with_ten_n(int precision)
-{
-	long double	ret;
-
-	ret = 1;
-	while (precision)
-	{
-		ret /= 10;
-		--precision;
-	}
-	return (ret);
 }
 
 int	rounding_direction(t_fs *f_str, long double f, int *for_bankers)
@@ -84,6 +71,27 @@ long double	rounder(t_fs *f_str, long double f)
 	return (f);
 }
 
+int	test_nan_and_inf(t_fs *f_str, long double f)
+{
+	union u_data	nb;
+
+	nb.f = f;
+	if (nb.d == 0x7ff0000000000000 || nb.d == 0xffc00000
+		|| nb.d == 0x7ff8000000000000 || nb.d == 0xfff0000000000000)
+	{
+		if (nb.d == 0xffc00000)
+			f_str->ret += write(1, "nan", 3);
+		if (nb.d == 0x7ff8000000000000)
+			f_str->ret += write(1, "nan", 3);
+		if (nb.d == 0x7ff0000000000000)
+			f_str->ret += write(1, "inf", 3);
+		if (nb.d == 0xfff0000000000000)
+			f_str->ret += write(1, "-inf", 4);
+		return (0);
+	}
+	return (1);
+}
+
 void	float_to_ascii(t_fs *f_str)
 {
 	long double	f;
@@ -92,6 +100,8 @@ void	float_to_ascii(t_fs *f_str)
 		f = (long double)va_arg(f_str->argcs, long double);
 	else
 		f = (double)va_arg(f_str->argcs, double);
+	if (!test_nan_and_inf(f_str, f))
+		return ;
 	if (1 / f < 0)
 	{
 		f *= -1;
